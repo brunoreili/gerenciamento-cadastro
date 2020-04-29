@@ -22,7 +22,7 @@ public class GerenciamentoOperadoresResource {
 	public Response listarOperadores() {
 		
 		List<String> operadores = gerenciamentoOperadoresBusiness.listarOperadores();
-		return Response.ok().build();
+		return Response.ok(operadores).build();
 	}
 
 }
