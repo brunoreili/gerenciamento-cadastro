@@ -1,5 +1,5 @@
 # PROJETO: gerenciamento-cadastro (avaliacao-mirante)
- Projeto realizado para a  avaliação da Mirante
+ Projeto realizado para a avaliação da Mirante
 
 ## Configurações iniciais
 
