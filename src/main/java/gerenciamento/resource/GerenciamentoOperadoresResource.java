@@ -25,7 +25,12 @@ public class GerenciamentoOperadoresResource {
 	public Response listarOperadores() {
 		
 		List<Operador> operadores = gerenciamentoOperadoresBusiness.listarOperadores();
-		return Response.ok(operadores).build();
+		return Response.ok(operadores)
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Credentials", "true")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+				.build();
 	}
 	
 	@POST
