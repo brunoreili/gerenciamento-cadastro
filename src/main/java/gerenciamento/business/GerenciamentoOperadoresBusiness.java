@@ -1,20 +1,27 @@
 package gerenciamento.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import gerenciamento.dao.OperadorDao;
+import gerenciamento.entity.Operador;
 
 @Stateless
 public class GerenciamentoOperadoresBusiness {
 	
-	public List<String> listarOperadores() {
+	@Inject
+	private OperadorDao operadorDao;
+	
+	public List<Operador> listarOperadores() {		
+		return operadorDao.listarOperadores();
+	}
+	
+	public void salvarOperador(Operador operador) {
 		
-		List<String> listaOperadores = new ArrayList<>();
-		listaOperadores.add("Operador_01");
-		listaOperadores.add("Operador_02");
+		operadorDao.salvarOperador(operador);
 		
-		return listaOperadores;
 	}
 
 }
