@@ -6,31 +6,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Operador {
-	
+public class Telefone {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message="Nome não pode estar vazio!")
-	private String nome;
+	@NotBlank(message="Login do Operador não pode estar vazio!")
+	private String loginOperador;
 	
-	@NotBlank(message="Login não pode estar vazio!")
-	private String login;
+	@NotNull(message="DDD não pode estar vazio!")
+	private Integer ddd;
 	
-	@NotBlank(message="Senha não pode estar vazio!")
-	private String senha;
+	@NotNull(message="Numero não pode estar vazio!")
+	private Integer numero;
 	
-	@NotNull(message="Perfil não pode estar vazio!")
-	private Integer perfil;
+	@NotNull(message="Topo não pode estar vazio!")
+	private Integer tipo;
 	
 	@NotNull(message="Data do cadastro não pode estar vazia!")
 	private LocalDateTime dataCadastro = LocalDateTime.now();
 	
+	@ManyToOne
+	private Pessoa pessoa;
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -38,7 +42,7 @@ public class Operador {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,7 +51,7 @@ public class Operador {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Operador other = (Operador) obj;
+		Telefone other = (Telefone) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -64,36 +68,36 @@ public class Operador {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getLoginOperador() {
+		return loginOperador;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setLoginOperador(String loginOperador) {
+		this.loginOperador = loginOperador;
 	}
 
-	public String getLogin() {
-		return login;
+	public Integer getDdd() {
+		return ddd;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setDdd(Integer ddd) {
+		this.ddd = ddd;
 	}
 
-	public String getSenha() {
-		return senha;
+	public Integer getNumero() {
+		return numero;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 
-	public Integer getPerfil() {
-		return perfil;
+	public Integer getTipo() {
+		return tipo;
 	}
 
-	public void setPerfil(Integer perfil) {
-		this.perfil = perfil;
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
 	}
 
 	public LocalDateTime getDataCadastro() {
@@ -103,4 +107,13 @@ public class Operador {
 	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
 }
+
