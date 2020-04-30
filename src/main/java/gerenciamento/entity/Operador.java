@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Operador {
@@ -13,10 +15,19 @@ public class Operador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotBlank
 	private String nome;
+	
+	@NotBlank
 	private String login;
+	
+	@NotBlank
 	private String senha;
-	private String perfil;
+	
+	@NotNull
+	private Integer perfil;
+	
 	private LocalDateTime dataCadastro;
 	
 	@Override
@@ -76,11 +87,11 @@ public class Operador {
 		this.senha = senha;
 	}
 
-	public String getPerfil() {
+	public Integer getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(String perfil) {
+	public void setPerfil(Integer perfil) {
 		this.perfil = perfil;
 	}
 

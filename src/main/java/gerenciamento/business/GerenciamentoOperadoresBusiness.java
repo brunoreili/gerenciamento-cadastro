@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import gerenciamento.dao.OperadorDao;
 import gerenciamento.entity.Operador;
@@ -18,10 +19,8 @@ public class GerenciamentoOperadoresBusiness {
 		return operadorDao.listarOperadores();
 	}
 	
-	public void salvarOperador(Operador operador) {
-		
-		operadorDao.salvarOperador(operador);
-		
+	public void salvarOperador(@Valid Operador operador) {		
+		operadorDao.salvarOperador(operador);		
 	}
 
 }

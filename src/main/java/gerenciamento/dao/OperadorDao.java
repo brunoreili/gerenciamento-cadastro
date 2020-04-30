@@ -1,5 +1,6 @@
 package gerenciamento.dao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -19,6 +20,8 @@ public class OperadorDao {
 	}	
 	
 	public void salvarOperador(Operador operador) {
+		
+		operador.setDataCadastro(LocalDateTime.now());
 		entityManager.persist(operador);
 	}
 	
