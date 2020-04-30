@@ -31,6 +31,15 @@ public class GerenciamentoOperadoresResource {
 		return Response.ok(operadores).header("Access-Control-Allow-Origin", "*").build();
 	}
 	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response buscarOperador(@PathParam("id") Integer id) {
+		
+		Operador operador = gerenciamentoOperadoresBusiness.buscarOperador(id);
+		return Response.ok(operador).header("Access-Control-Allow-Origin", "*").build();	
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response SalvarOperador(Operador operador) {

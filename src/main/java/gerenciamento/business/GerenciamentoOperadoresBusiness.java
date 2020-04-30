@@ -19,6 +19,10 @@ public class GerenciamentoOperadoresBusiness {
 		return operadorDao.listarOperadores();
 	}
 	
+	public Operador buscarOperador(Integer id) {
+		return operadorDao.buscarOperador(id);
+	}
+	
 	public void salvarOperador(@Valid Operador operador) {		
 		operadorDao.salvarOperador(operador);		
 	}
@@ -30,5 +34,7 @@ public class GerenciamentoOperadoresBusiness {
 	public void excluirOperador(Integer id) {		
 		operadorDao.excluirOperador(id);
 	}
+
+	
 
 }
