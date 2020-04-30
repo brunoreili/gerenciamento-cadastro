@@ -22,5 +22,13 @@ public class GerenciamentoOperadoresBusiness {
 	public void salvarOperador(@Valid Operador operador) {		
 		operadorDao.salvarOperador(operador);		
 	}
+	
+	public void editarOperador(Integer id, @Valid Operador operador) {		
+		operadorDao.editarOperador(id, operador);		
+	}
+	
+	public void excluirOperador(Integer id) {		
+		operadorDao.excluirOperador(id);
+	}
 
 }

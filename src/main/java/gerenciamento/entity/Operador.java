@@ -16,16 +16,16 @@ public class Operador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
+	@NotBlank(message="Nome não pode estar vazio!")
 	private String nome;
 	
-	@NotBlank
+	@NotBlank(message="Login não pode estar vazio!")
 	private String login;
 	
-	@NotBlank
+	@NotBlank(message="Senha não pode estar vazio!")
 	private String senha;
 	
-	@NotNull
+	@NotNull(message="Perfil não pode estar vazio!")
 	private Integer perfil;
 	
 	private LocalDateTime dataCadastro;
