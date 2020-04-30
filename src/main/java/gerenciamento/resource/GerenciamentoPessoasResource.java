@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import gerenciamento.business.GerenciamentoPessoasBusiness;
+import gerenciamento.dto.PessoaListagemDto;
 import gerenciamento.entity.Pessoa;
 
 @Path("/pessoas")
@@ -23,6 +24,8 @@ public class GerenciamentoPessoasResource {
 	public Response ListarPessoas() {
 		
 		List<Pessoa> pessoas = gerenciamentoPessoasBusiness.listarPessoas();
-		return Response.ok(pessoas).header("Access-Control-Allow-Origin", "*").build();
+		List<PessoaListagemDto> pessoaListagem = PessoaListagemDto.converter(pessoas);
+		
+		return Response.ok(pessoaListagem).header("Access-Control-Allow-Origin", "*").build();
 	}
 }
