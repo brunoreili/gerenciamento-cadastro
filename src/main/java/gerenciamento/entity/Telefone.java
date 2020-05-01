@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import gerenciamento.form.TelefoneForm;
+
 @Entity
 public class Telefone {
 
@@ -34,6 +36,19 @@ public class Telefone {
 	
 	@ManyToOne
 	private Pessoa pessoa;
+	
+	public Telefone() {
+		
+	}
+
+	public Telefone(TelefoneForm telefoneForm, Pessoa pessoa) {
+		this.id = telefoneForm.getId();
+		this.loginOperador = telefoneForm.getLoginOperador();
+		this.ddd = telefoneForm.getDdd();
+		this.numero = telefoneForm.getNumero();
+		this.tipo = telefoneForm.getTipo();
+		this.pessoa = pessoa;
+	}
 
 	@Override
 	public int hashCode() {

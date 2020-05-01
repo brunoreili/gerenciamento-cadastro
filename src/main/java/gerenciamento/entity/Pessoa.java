@@ -60,9 +60,7 @@ public class Pessoa {
 		this.nomePai = pessoaForm.getNomePai();		
 		this.loginOperador = pessoaForm.getLoginOperador();		
 		this.tipoPessoa = pessoaForm.getTipoPessoa();		
-		this.dataNascimento = LocalDateTime.parse(pessoaForm.getDataNascimento(),DateTimeFormatter.ISO_DATE_TIME);		
-//		this.dataCadastro = LocalDateTime.now();		
-//		this.telefones;
+		this.dataNascimento = LocalDateTime.parse(pessoaForm.getDataNascimento(),DateTimeFormatter.ISO_DATE_TIME);
 	}
 
 	@Override
