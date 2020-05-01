@@ -30,6 +30,41 @@ public class PessoaListagemDto {
 		this.dataCadastro = this.formatarData(pessoa.getDataCadastro());
 	}
 	
+	public String formatarDocumento(String documento, Integer tipoPessoa) {
+		try {
+			MaskFormatter mask;
+			String cpfMask = "###.###.###-##";
+			String cnpjMask = "###.###.###/####-##";
+			
+			mask = tipoPessoa == 1 ? new MaskFormatter(cpfMask) : new MaskFormatter(cnpjMask);
+			mask.setValueContainsLiteralCharacters(false);
+
+			return mask.valueToString(documento);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return documento;
+		}
+	}
+	
+	public String formatarTipoPessoa(Integer tipoPessoa) {
+		switch(tipoPessoa){
+            case 1:
+                return "FÍSICA";
+            case 2:
+            	return "JURÍDICA";                
+            default:
+            	return "";
+        }
+    }
+	
+	public String formatarData(LocalDateTime data) {
+		return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(data);
+	}	
+
+	public static List<PessoaListagemDto> converter(List<Pessoa> pessoas) {
+		return pessoas.stream().map(PessoaListagemDto::new).collect(Collectors.toList());		
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -56,41 +91,5 @@ public class PessoaListagemDto {
 
 	public String getDataCadastro() {
 		return dataCadastro;
-	}
-	
-	public String formatarDocumento(String documento, Integer tipoPessoa) {
-		MaskFormatter mask;
-		try {
-			String cpfMask = "###.###.###-##";
-			String cnpjMask = "###.###.###/####-##";
-			
-			mask = tipoPessoa == 1 ? new MaskFormatter(cpfMask) : new MaskFormatter(cnpjMask);
-			mask.setValueContainsLiteralCharacters(false);
-
-			return mask.valueToString(documento);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return documento;
-		}
-	}
-	
-	public String formatarTipoPessoa(int valor) {
-		switch(valor){
-            case 1:
-                return "FÍSICA";
-            case 2:
-            	return "JURÍDICA";                
-            default:
-            	return "";
-        }
-    }
-	
-	public String formatarData(LocalDateTime data) {
-		return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(data);
 	}	
-
-	public static List<PessoaListagemDto> converter(List<Pessoa> pessoas) {
-		return pessoas.stream().map(PessoaListagemDto::new).collect(Collectors.toList());		
-	}
-	
 }

@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import gerenciamento.business.GerenciamentoOperadoresBusiness;
+import gerenciamento.dto.OperadorListagemDto;
 import gerenciamento.entity.Operador;
 
 @Path("/operadores")
@@ -28,7 +29,9 @@ public class GerenciamentoOperadoresResource {
 	public Response listarOperadores() {
 		
 		List<Operador> operadores = gerenciamentoOperadoresBusiness.listarOperadores();
-		return Response.ok(operadores).header("Access-Control-Allow-Origin", "*").build();
+		List<OperadorListagemDto> operadorListagem = OperadorListagemDto.converter(operadores);
+		
+		return Response.ok(operadorListagem).header("Access-Control-Allow-Origin", "*").build();
 	}
 	
 	@GET
