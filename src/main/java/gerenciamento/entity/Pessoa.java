@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class Pessoa {
 	@NotNull(message="Data do cadastro não pode estar vazia!")
 	private LocalDateTime dataCadastro = LocalDateTime.now();
 	
-	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Telefone> telefones;
 	
 	public Pessoa() {
