@@ -11,7 +11,7 @@ public class TelefoneListagemDto {
 	
 	private Long id;
 	private String loginOperador;
-	private Integer ddd;
+	private String ddd;
 	private Integer numero;
 	private String tipo;
 	private String dataCadastro;
@@ -54,7 +54,7 @@ public class TelefoneListagemDto {
 		return loginOperador;
 	}
 
-	public Integer getDdd() {
+	public String getDdd() {
 		return ddd;
 	}
 

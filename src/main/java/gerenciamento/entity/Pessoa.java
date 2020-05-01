@@ -1,6 +1,7 @@
 package gerenciamento.entity;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import gerenciamento.form.PessoaForm;
 
 @Entity
 public class Pessoa {
@@ -36,7 +39,7 @@ public class Pessoa {
 	private Integer tipoPessoa;
 	
 	@NotNull(message="Data de nascimento não pode estar vazia!")
-	private LocalDateTime dataNascimento = LocalDateTime.now();
+	private LocalDateTime dataNascimento;
 	
 	@NotNull(message="Data do cadastro não pode estar vazia!")
 	private LocalDateTime dataCadastro = LocalDateTime.now();
@@ -44,6 +47,23 @@ public class Pessoa {
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER)
 	private List<Telefone> telefones;
 	
+	public Pessoa() {
+		
+	}
+
+	public Pessoa(PessoaForm pessoaForm) {
+		this.id = pessoaForm.getId();
+		this.nome = pessoaForm.getNome();		
+		this.documento = pessoaForm.getDocumento();
+		this.nomeMae = pessoaForm.getNomeMae();
+		this.nomePai = pessoaForm.getNomePai();		
+		this.loginOperador = pessoaForm.getLoginOperador();		
+		this.tipoPessoa = pessoaForm.getTipoPessoa();		
+		this.dataNascimento = LocalDateTime.parse(pessoaForm.getDataNascimento(),DateTimeFormatter.ISO_DATE_TIME);		
+//		this.dataCadastro = LocalDateTime.now();		
+//		this.telefones;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

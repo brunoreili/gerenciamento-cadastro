@@ -20,8 +20,8 @@ public class Telefone {
 	@NotBlank(message="Login do Operador não pode estar vazio!")
 	private String loginOperador;
 	
-	@NotNull(message="DDD não pode estar vazio!")
-	private Integer ddd;
+	@NotBlank(message="DDD não pode estar vazio!")
+	private String ddd;
 	
 	@NotNull(message="Numero não pode estar vazio!")
 	private Integer numero;
@@ -76,11 +76,11 @@ public class Telefone {
 		this.loginOperador = loginOperador;
 	}
 
-	public Integer getDdd() {
+	public String getDdd() {
 		return ddd;
 	}
 
-	public void setDdd(Integer ddd) {
+	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}
 

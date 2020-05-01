@@ -23,4 +23,23 @@ public class PessoaDao {
 		return pessoa;
 	}
 
+	public void salvarPessoa(Pessoa pessoa) {
+		entityManager.persist(pessoa);
+	}
+
+	public void editarPessoa(Integer id, Pessoa pessoa) {
+		Pessoa pessoaEditada = buscarPessoa(id);
+		
+		pessoaEditada.setNome(pessoa.getNome());
+		pessoaEditada.setNomeMae(pessoa.getNomeMae());
+		pessoaEditada.setNomePai(pessoa.getNomePai());
+		pessoaEditada.setTipoPessoa(pessoa.getTipoPessoa());
+		pessoaEditada.setDataNascimento(pessoa.getDataNascimento());		
+		entityManager.merge(pessoaEditada);		
+	}
+
+	public void excluirPessoa(Integer id) {
+		Pessoa pessoa = buscarPessoa(id);
+		entityManager.remove(pessoa);
+	}
 }

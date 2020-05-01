@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import gerenciamento.dao.PessoaDao;
 import gerenciamento.entity.Pessoa;
@@ -22,4 +23,15 @@ public class GerenciamentoPessoasBusiness {
 		return pessoaDao.buscarPessoa(id);
 	}
 
+	public void salvarPessoa(@Valid Pessoa pessoa) {
+		pessoaDao.salvarPessoa(pessoa);		
+	}
+
+	public void editarPessoa(Integer id, @Valid Pessoa pessoa) {
+		pessoaDao.editarPessoa(id, pessoa);			
+	}
+
+	public void excluirPessoa(Integer id) {
+		pessoaDao.excluirPessoa(id);		
+	}	
 }

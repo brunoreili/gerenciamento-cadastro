@@ -1,9 +1,15 @@
 package gerenciamento.resource;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,6 +22,7 @@ import gerenciamento.dto.PessoaListagemDto;
 import gerenciamento.dto.TelefoneListagemDto;
 import gerenciamento.entity.Pessoa;
 import gerenciamento.entity.Telefone;
+import gerenciamento.form.PessoaForm;
 
 @Path("/pessoas")
 public class GerenciamentoPessoasResource {
@@ -46,4 +53,31 @@ public class GerenciamentoPessoasResource {
 		
 		return Response.ok(pessoaDto).header("Access-Control-Allow-Origin", "*").build();	
 	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response SalvarPessoa(PessoaForm pessoaForm) {
+		
+		Pessoa pessoa = PessoaForm.converter(pessoaForm);		
+		gerenciamentoPessoasBusiness.salvarPessoa(pessoa);
+		return Response.status(201).header("Access-Control-Allow-Origin", "*").build();		
+	}
+	
+	@PUT
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response EditarPessoa(@PathParam("id") Integer id, PessoaForm pessoaForm) {
+		
+		Pessoa pessoa = PessoaForm.converter(pessoaForm);
+		gerenciamentoPessoasBusiness.editarPessoa(id, pessoa);
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();		
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	public Response ExcluirPessoa(@PathParam("id") Integer id) {
+		
+		gerenciamentoPessoasBusiness.excluirPessoa(id);
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();		
+	}	
 }

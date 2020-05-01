@@ -69,5 +69,5 @@ public class GerenciamentoOperadoresResource {
 		
 		gerenciamentoOperadoresBusiness.excluirOperador(id);
 		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();		
-	}
+	}	
 }

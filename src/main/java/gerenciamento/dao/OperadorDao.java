@@ -41,6 +41,5 @@ public class OperadorDao {
 		
 		Operador operador = buscarOperador( id);
 		entityManager.remove(operador);
-	}
-	
+	}	
 }

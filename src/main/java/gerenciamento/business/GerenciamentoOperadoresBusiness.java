@@ -33,8 +33,5 @@ public class GerenciamentoOperadoresBusiness {
 	
 	public void excluirOperador(Integer id) {		
 		operadorDao.excluirOperador(id);
-	}
-
-	
-
+	}	
 }
