@@ -22,4 +22,12 @@ public class GerenciamentoTelefonesBusiness {
 	public void salvarTelefone(@Valid Telefone telefone) {
 		telefoneDao.savarTelefone(telefone);
 	}
+
+	public void editarTelefone(Integer id, @Valid Telefone telefone) {
+		telefoneDao.editarTelefone(id, telefone);	
+	}
+
+	public void excluirTelefone(Integer id) {
+		telefoneDao.excluirTelefone(id);	
+	}
 }

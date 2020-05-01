@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -48,5 +50,25 @@ public class GerenciamentoTelefonesResource {
 		
 		gerenciamentoTelefonesBusiness.salvarTelefone(telefone);
 		return Response.status(201).header("Access-Control-Allow-Origin", "*").build();
+	}
+	
+	@PUT
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response EditarTelefone(@PathParam("id") Integer id, TelefoneForm telefoneForm) {
+		
+		Pessoa pessoa = gerenciamentoPessoasBusiness.buscarPessoa(telefoneForm.getPessoaId());
+		Telefone telefone = TelefoneForm.converter(telefoneForm, pessoa);;
+		
+		gerenciamentoTelefonesBusiness.editarTelefone(id, telefone);
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();		
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	public Response ExcluirTelefone(@PathParam("id") Integer id) {
+		
+		gerenciamentoTelefonesBusiness.excluirTelefone(id);
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();		
 	}
 }
