@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import gerenciamento.business.GerenciamentoOperadoresBusiness;
+import gerenciamento.dto.OperadorDto;
 import gerenciamento.dto.OperadorListagemDto;
 import gerenciamento.entity.Operador;
 
@@ -29,9 +30,9 @@ public class GerenciamentoOperadoresResource {
 	public Response listarOperadores() {
 		
 		List<Operador> operadores = gerenciamentoOperadoresBusiness.listarOperadores();
-		List<OperadorListagemDto> operadorListagem = OperadorListagemDto.converter(operadores);
+		List<OperadorListagemDto> operadorListagemDto = OperadorListagemDto.converter(operadores);
 		
-		return Response.ok(operadorListagem).header("Access-Control-Allow-Origin", "*").build();
+		return Response.ok(operadorListagemDto).header("Access-Control-Allow-Origin", "*").build();
 	}
 	
 	@GET
@@ -40,7 +41,9 @@ public class GerenciamentoOperadoresResource {
 	public Response buscarOperador(@PathParam("id") Integer id) {
 		
 		Operador operador = gerenciamentoOperadoresBusiness.buscarOperador(id);
-		return Response.ok(operador).header("Access-Control-Allow-Origin", "*").build();	
+		OperadorDto operadorDto = OperadorDto.converter(operador);
+		
+		return Response.ok(operadorDto).header("Access-Control-Allow-Origin", "*").build();	
 	}
 	
 	@POST
