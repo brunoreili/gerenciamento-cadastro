@@ -1,6 +1,7 @@
 package gerenciamento.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import gerenciamento.entity.Pessoa;
@@ -14,7 +15,7 @@ public class PessoaDto {
 	private String nomePai;
 	private String loginOperador;
 	private Integer tipoPessoa;
-	private LocalDateTime dataNascimento;
+	private String dataNascimento;
 	private List<TelefoneListagemDto> telefones;
 	
 
@@ -26,12 +27,16 @@ public class PessoaDto {
 		this.nomePai = pessoa.getNomePai();
 		this.loginOperador = pessoa.getLoginOperador();
 		this.tipoPessoa = pessoa.getTipoPessoa();
-		this.dataNascimento = pessoa.getDataNascimento();
+		this.dataNascimento = formataData(pessoa.getDataNascimento());
 		this.telefones = telefones;
 	}
 
 	public static PessoaDto converter(Pessoa pessoa, List<TelefoneListagemDto> telefones) {
 		return new PessoaDto(pessoa, telefones);
+	}
+	
+	private String formataData(LocalDateTime data) {
+		return DateTimeFormatter.ofPattern("MM/dd/yyyy").format(data);
 	}
 
 	public Long getId() {
@@ -62,7 +67,7 @@ public class PessoaDto {
 		return tipoPessoa;
 	}
 
-	public LocalDateTime getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
