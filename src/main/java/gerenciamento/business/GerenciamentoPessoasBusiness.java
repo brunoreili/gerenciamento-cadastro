@@ -17,5 +17,9 @@ public class GerenciamentoPessoasBusiness {
 	public List<Pessoa> listarPessoas() {
 		return pessoaDao.listarPessoas();
 	}
+	
+	public Pessoa buscarPessoa(Integer id) {
+		return pessoaDao.buscarPessoa(id);
+	}
 
 }

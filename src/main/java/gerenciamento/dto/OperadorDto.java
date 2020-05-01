@@ -1,8 +1,5 @@
 package gerenciamento.dto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import gerenciamento.entity.Operador;
 
 public class OperadorDto {

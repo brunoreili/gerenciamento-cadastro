@@ -17,5 +17,10 @@ public class PessoaDao {
 	public List<Pessoa> listarPessoas() {
 		return entityManager.createQuery("SELECT p FROM Pessoa p", Pessoa.class).getResultList();
 	}
+	
+	public Pessoa buscarPessoa(Integer id) {
+		Pessoa pessoa = entityManager.createQuery("SELECT p FROM Pessoa p WHERE p.id = " + id, Pessoa.class).getSingleResult();
+		return pessoa;
+	}
 
 }
