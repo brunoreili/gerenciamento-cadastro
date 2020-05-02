@@ -23,8 +23,9 @@ public class PessoaDao {
 		return pessoa;
 	}
 
-	public void salvarPessoa(Pessoa pessoa) {
+	public Long salvarPessoa(Pessoa pessoa) {
 		entityManager.persist(pessoa);
+		return pessoa.getId();
 	}
 
 	public void editarPessoa(Integer id, Pessoa pessoa) {

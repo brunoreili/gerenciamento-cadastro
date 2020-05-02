@@ -57,8 +57,8 @@ public class GerenciamentoPessoasResource {
 	public Response SalvarPessoa(PessoaForm pessoaForm) {
 		
 		Pessoa pessoa = PessoaForm.converter(pessoaForm);		
-		gerenciamentoPessoasBusiness.salvarPessoa(pessoa);
-		return Response.status(201).header("Access-Control-Allow-Origin", "*").build();		
+		Long idPessoa = gerenciamentoPessoasBusiness.salvarPessoa(pessoa);
+		return Response.ok(idPessoa).status(201).header("Access-Control-Allow-Origin", "*").build();		
 	}
 	
 	@PUT

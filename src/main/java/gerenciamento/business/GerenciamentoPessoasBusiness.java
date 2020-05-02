@@ -23,8 +23,8 @@ public class GerenciamentoPessoasBusiness {
 		return pessoaDao.buscarPessoa(id);
 	}
 
-	public void salvarPessoa(@Valid Pessoa pessoa) {
-		pessoaDao.salvarPessoa(pessoa);		
+	public Long salvarPessoa(@Valid Pessoa pessoa) {
+		return pessoaDao.salvarPessoa(pessoa);		
 	}
 
 	public void editarPessoa(Integer id, @Valid Pessoa pessoa) {

@@ -15,7 +15,7 @@ public class TelefoneDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private Telefone buscarTelefone(Integer id) {
+	public Telefone buscarTelefone(Integer id) {
 		return entityManager.createQuery("SELECT t FROM Telefone t WHERE t.id = " + id, Telefone.class).getSingleResult();
 	}
 	
