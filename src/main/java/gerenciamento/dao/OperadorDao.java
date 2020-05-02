@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import gerenciamento.dto.OperadorLoginDto;
 import gerenciamento.entity.Operador;
 
 @Stateless
@@ -20,6 +21,21 @@ public class OperadorDao {
 	
 	public Operador buscarOperador(Integer id) {
 		Operador operador = entityManager.createQuery("SELECT o FROM Operador o WHERE o.id = " + id, Operador.class).getSingleResult();;
+		return operador;
+	}
+	
+	public Operador buscarOperador(OperadorLoginDto operadorLoginDto) {
+		
+		Operador operador = new Operador();
+		
+		try {
+			operador = entityManager.createQuery(
+					"SELECT o FROM Operador o WHERE o.login = '" + operadorLoginDto.getLogin() + "'"
+				  + "AND o.senha = '" + operadorLoginDto.getSenha() + "'", Operador.class).getSingleResult();		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return operador;
 	}
 	
@@ -41,5 +57,5 @@ public class OperadorDao {
 		
 		Operador operador = buscarOperador( id);
 		entityManager.remove(operador);
-	}	
+	}
 }

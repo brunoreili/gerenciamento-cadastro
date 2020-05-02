@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import gerenciamento.dao.OperadorDao;
+import gerenciamento.dto.OperadorLoginDto;
 import gerenciamento.entity.Operador;
 
 @Stateless
@@ -23,6 +24,10 @@ public class GerenciamentoOperadoresBusiness {
 		return operadorDao.buscarOperador(id);
 	}
 	
+	public Operador buscarOperador(OperadorLoginDto operador) {
+		return operadorDao.buscarOperador(operador);
+	}
+	
 	public void salvarOperador(@Valid Operador operador) {		
 		operadorDao.salvarOperador(operador);		
 	}
@@ -33,5 +38,5 @@ public class GerenciamentoOperadoresBusiness {
 	
 	public void excluirOperador(Integer id) {		
 		operadorDao.excluirOperador(id);
-	}	
+	}
 }

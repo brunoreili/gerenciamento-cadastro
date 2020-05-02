@@ -9,17 +9,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import gerenciamento.business.GerenciamentoAutenticacaoBusiness;
+import gerenciamento.business.GerenciamentoOperadoresBusiness;
+import gerenciamento.dto.OperadorLoginDto;
 import gerenciamento.dto.TokenDto;
-import gerenciamento.entity.Usuario;
-import gerenciamento.form.UsuarioForm;
+import gerenciamento.entity.Operador;
 import gerenciamento.security.JWTTokenService;
 
-@Path("/auth")
+@Path("/autenticacao")
 public class GerenciamentoAutenticacaoResource {
 
 	@Inject
-	private GerenciamentoAutenticacaoBusiness gerenciamentoAutenticacaoBusiness;
+	private GerenciamentoOperadoresBusiness gerenciamentoOperadoresBusiness;
 
 	@Inject
 	private JWTTokenService gerenciamentoTokenBusiness;	
@@ -27,14 +27,14 @@ public class GerenciamentoAutenticacaoResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-	public Response autenticar(UsuarioForm usuarioForm) {		
+	public Response autenticar(OperadorLoginDto operadorLoginDto) {		
 		
-		Usuario usuario = gerenciamentoAutenticacaoBusiness.buscarUsuario(usuarioForm);
-		if(usuario.getId() == null) {	
+		Operador operador = gerenciamentoOperadoresBusiness.buscarOperador(operadorLoginDto);
+		if(operador.getId() == null) {	
 			return Response.status(Status.UNAUTHORIZED).header("Access-Control-Allow-Origin", "*").build();
 		}
 
-		String token = gerenciamentoTokenBusiness.gerarToken(usuario);
+		String token = gerenciamentoTokenBusiness.gerarToken(operador);
 		return Response.ok(new TokenDto(token, "Bearer")).header("Access-Control-Allow-Origin", "*").build();	
 
 	}
