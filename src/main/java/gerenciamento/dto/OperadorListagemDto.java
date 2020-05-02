@@ -23,9 +23,11 @@ public class OperadorListagemDto {
 	
 	private String formatarPerfil(Integer perfil) {
 		switch(perfil){
-	        case 1:
+			case 1:
+				return "ADMINISTRADOR";
+			case 2:
 	            return "GERENTE";
-	        case 2:
+	        case 3:
 	        	return "ANALISTA";                
 	        default:
 	        	return "";
