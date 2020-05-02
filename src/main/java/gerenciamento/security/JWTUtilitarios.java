@@ -29,7 +29,7 @@ public class JWTUtilitarios {
 		return chave;
 	}
 
-	private static String gerarChaveRandomica(int comprimento) {
+	static String gerarChaveRandomica(int comprimento) {
 		char[] cenario = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
 				'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D',
 				'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
@@ -43,6 +43,8 @@ public class JWTUtilitarios {
 			senha[indice] = cenario[randomico.nextInt(comprimentoDoCenario)];	
 		}
 		
-		return new String(senha);
+		System.out.println(new String(senha));
+		//A ideia é guardar a chave dandomica numa sessão ou algo do tipo, para efeito de teste foi gerada uma chave fixa.
+		return new String("zxrW2UPG0sZRp5YLeX2jMAYIOAQ0wnfZfJcBFmdpb2sVuYEacshbbNTCtiAXnhFJufP4soRYLPm96sFld2HCj9u3Z3K3F54D2I18");
 	}
 }
