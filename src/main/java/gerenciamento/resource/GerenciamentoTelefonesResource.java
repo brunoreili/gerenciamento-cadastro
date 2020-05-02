@@ -48,8 +48,8 @@ public class GerenciamentoTelefonesResource {
 		Pessoa pessoa = gerenciamentoPessoasBusiness.buscarPessoa(telefoneForm.getPessoaId());
 		Telefone telefone = TelefoneForm.converter(telefoneForm, pessoa);
 		
-		gerenciamentoTelefonesBusiness.salvarTelefone(telefone);
-		return Response.status(201).header("Access-Control-Allow-Origin", "*").build();
+		Long idTelefone = gerenciamentoTelefonesBusiness.salvarTelefone(telefone);
+		return Response.ok(idTelefone).status(201).header("Access-Control-Allow-Origin", "*").build();
 	}
 	
 	@PUT

@@ -19,8 +19,8 @@ public class GerenciamentoTelefonesBusiness {
 		return telefoneDao.buscarTelefones(idPessoa);
 	}
 
-	public void salvarTelefone(@Valid Telefone telefone) {
-		telefoneDao.savarTelefone(telefone);
+	public Long salvarTelefone(@Valid Telefone telefone) {
+		return telefoneDao.savarTelefone(telefone);
 	}
 
 	public void editarTelefone(Integer id, @Valid Telefone telefone) {

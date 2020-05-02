@@ -23,8 +23,9 @@ public class TelefoneDao {
 		return entityManager.createQuery("SELECT t FROM Telefone t WHERE t.pessoa.id = " + idPessoa, Telefone.class).getResultList();
 	}
 
-	public void savarTelefone(Telefone telefone) {
+	public Long savarTelefone(Telefone telefone) {
 		entityManager.persist(telefone);
+		return telefone.getId();
 	}
 
 	public void editarTelefone(Integer id, @Valid Telefone telefone) {
