@@ -19,6 +19,7 @@
         <jakartaee>8.0</jakartaee>
         <junit>3.8.1</junit>
         <log4j-core>2.11.1</log4j-core>
+        <jjwt>0.9.1</jjwt>
     </properties>
     
     <dependencies>
@@ -40,6 +41,12 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j-core}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt}</version>
         </dependency>
     </dependencies>
 </project>
