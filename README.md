@@ -24,6 +24,16 @@
 			/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.cj.jdbc.MysqlXADataSource)
 	*Ou diretamente no arquivo standalone-full.xml "Ex:  ../wildfly-15.0.1.Final/standalone/configuration/standalone-full.xml (tags: datasource e driver)"*
 
+3. Queries:
+
+	- Para criação do banco de dados
+			CREATE DATABASE gerenciamento_cadastro;
+
+	- Para inserir usuario administrador
+			INSERT INTO operador (id, nome, login, senha, dataCadastro) VALUES (1, Administrador, admin, admin, '2020-05-02-00.00.00 -0300') ;
+
+	- Observação: As tabelas são geradas automaticamente pela JPA.
+
 ### Back-end
 1. Utilização do WildFly como servidor de aplição, baixado diretamente do site: https://wildfly.org/downloads/
 
@@ -31,3 +41,19 @@
 	- A pasta do WildFly precisa estar em um diretório com permissão de acesso.
 	- A versão utilizada foi a 15.0.1.Final	- Java EE Full & Web Distribution.
 	- Está sendo utlizado o arquivo "standalone-full.xml" nas configurações do Runtime Environment.
+	
+
+
+### OBSERVAÇÕES IMPORTANTES
+
+1. #### ROTAS
+- Não foi possível concluir a parte da autenticação, portanto as todas devem ser inseridas diretamente pela URL.
+
+	- Rotas:
+			LOGIN: /login
+			LISTAR OPERADORES: /operador/listar
+			CADASTRAR OPERADORE: /operador/cadastrar
+			EDITAR OPERADORE: /operador/editar/{id}
+			LISTAR PESSOAS: /pessoa/listar
+			CADASTRAR PESSOA: /pessoa/cadastrar
+			EDITAR PESSOA: /pessoa/editar/{id}
